@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+    
+{% block content %}
+    <div id="content">
+        <h1 class="f1 lh-solid avenir short black-80">{{ page.title }}</h1>
+        
+        {% for child in self.body %} 
+            {% if child.block_type == 'heading' %}
+                <h2>{{ child.value }}</h2>
+            {% elif child.block_type == 'paragraph' %}
+                <span class="f3">{{ child }}</span>
+            {% elif child.block_type == 'image' %}
+                {% if child.value.width > child.value.height %}
+                    {% image child.value width-1800 as tmp_photo %}
+                {% else %}
+                    {% image child.value width-1200 as tmp_photo %}
+                {% endif %}
+                <img src="{{ tmp_photo.url }}" 
+                    {# https://stackoverflow.com/a/33280889 #}
+                    width="{% widthratio tmp_photo.width 2 1 %}"
+                    alt="{{ tmp_photo.title }}"
+                    class = "br2" />
+            {% else %}
+                {{ child }}
+            {% endif %} 
+        {% endfor %}
+        <p class="i f3 black-60">{{ page.date }}</p>
+    </div>
+{% endblock %}

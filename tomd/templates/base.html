@@ -1,0 +1,47 @@
+{% load static wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>
+            {% block title %}
+                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+                {% with self.get_site.site_name as site_name %}
+                    {% if site_name %}- {{ site_name }}{% endif %}
+                {% endwith %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/tachyons.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/tomd.css' %}">
+        <style>
+          .big-image { font-size: 2rem; }
+          p {max-width: 34em}
+          .short {max-width: 14em}
+        </style>
+    </head>
+
+    <body class="athelas black-80">
+        {% wagtailuserbar %}
+        <header class="bg-washed-green ph3 ph5-ns pa1">
+            <h4 class="f4 fw4 avenir">
+                <a href = "/" class="no-underline black">tomd.org</a> // 
+                <a href = "/about/" class="no-underline black">about</a></h4>
+        </header>
+        
+        <section>
+            <article class="lh-copy mh3 mh5-ns">
+                {% block content %}{% endblock %}
+            </article>
+        </section>
+
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/tomd.js' %}"></script>
+    </body>
+</html>
