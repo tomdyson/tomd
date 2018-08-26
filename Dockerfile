@@ -16,4 +16,4 @@ RUN useradd wagtail
 RUN chown -R wagtail /code
 USER wagtail
 
-CMD ["../run.sh"]
+CMD ["run.sh"]
