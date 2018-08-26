@@ -16,6 +16,4 @@ RUN useradd wagtail
 RUN chown -R wagtail /code
 USER wagtail
 
-RUN SECRET_KEY=none django-admin.py collectstatic --noinput --clear
-
 CMD ["../run.sh"]
