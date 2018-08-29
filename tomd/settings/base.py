@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'bakery',
+    'wagtailbakery',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +147,9 @@ WAGTAIL_SITE_NAME = "tomd"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+BAKERY_MULTISITE = False
+BUILD_DIR = env.get('BUILD_DIR', '/tmp/build/')
+BAKERY_VIEWS = (
+	'wagtailbakery.views.AllPublishedPagesView',
+)
