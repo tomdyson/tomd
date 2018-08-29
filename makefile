@@ -6,4 +6,4 @@ deploy:
 
 build:
 	./manage.py build
-	./netlifyctl -A $$NETLIFY_TOKEN -P $$BUILD_DIR -n tomd deploy
+	./netlifyctl -A $$NETLIFY_TOKEN -P $$BUILD_DIR -s $$NETLIFY_SITE_ID deploy
