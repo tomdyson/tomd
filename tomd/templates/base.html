@@ -20,6 +20,7 @@
 
         <link rel="stylesheet" type="text/css" href="{% static 'css/tachyons.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/tomd.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans|Source+Serif+Pro" rel="stylesheet">
         <style>
           .big-image { font-size: 2rem; }
           p {max-width: 34em}
@@ -29,14 +30,14 @@
 
     <body class="athelas black-80">
         {% wagtailuserbar %}
-        <header class="bg-washed-green ph3 ph5-ns pa1">
+        <header class="bg-near-white ph3 ph5-ns pa1">
             <h4 class="f4 fw4 avenir">
                 <a href = "/" class="no-underline black">tomd.org</a> // 
                 <a href = "/about/" class="no-underline black">about</a></h4>
         </header>
         
         <section>
-            <article class="lh-copy mh3 mh5-ns">
+            <article class="lh-copy mh3 mh5-ns ">
                 {% block content %}{% endblock %}
             </article>
         </section>

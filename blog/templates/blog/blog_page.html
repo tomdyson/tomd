@@ -9,10 +9,10 @@
             {% if child.block_type == 'heading' %}
                 <h2>{{ child.value }}</h2>
             {% elif child.block_type == 'paragraph' %}
-                <span class="f3">{{ child }}</span>
+                <span class="f4">{{ child }}</span>
             {% elif child.block_type == 'image' %}
                 {% if child.value.width > child.value.height %}
-                    {% image child.value width-1800 as tmp_photo %}
+                    {% image child.value width-1600 as tmp_photo %}
                 {% else %}
                     {% image child.value width-1200 as tmp_photo %}
                 {% endif %}
@@ -25,6 +25,6 @@
                 {{ child }}
             {% endif %} 
         {% endfor %}
-        <p class="i f3 black-60">{{ page.date }}</p>
+        <p class="f4 black-60">{{ page.date }}</p>
     </div>
 {% endblock %}

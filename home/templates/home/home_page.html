@@ -6,8 +6,8 @@
 {% block content %}
     {% for post in blogpages %}
         <h1 class="f1 lh-solid avenir short mb0">
-            <a class="black-80" href="{% pageurl post %}">{{ post.title }}</a>
+            <a class="dark-gray" href="{% pageurl post %}">{{ post.title }}</a>
         </h1>
-        <p class="i f3 mt0 gray">{{ post.specific.date }}</p>
+        <p class="f4 mt0 light-red">{{ post.specific.date }}</p>
     {% endfor %}
 {% endblock %}
