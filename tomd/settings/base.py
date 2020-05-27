@@ -10,10 +10,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 env = os.environ.copy()
 
 if "SENTRY_DSN" in env:
-sentry_sdk.init(
-    dsn=os.environ['SENTRY_DSN'],
-    integrations=[DjangoIntegration()]
-)
+    sentry_sdk.init(dsn=os.environ["SENTRY_DSN"], integrations=[DjangoIntegration()])
 
 if "SECRET_KEY" in env:
     SECRET_KEY = env["SECRET_KEY"]
