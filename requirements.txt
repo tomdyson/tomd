@@ -1,6 +1,6 @@
 appdirs==1.4.3
 asgiref==3.2.3
-beautifulsoup4==4.6.0
+beautifulsoup4==4.8.0
 boto3==1.7.84
 botocore==1.10.84
 buckup==0.1a2
@@ -31,7 +31,7 @@ six==1.11.0
 sqlparse==0.3.0
 Unidecode==1.0.22
 urllib3==1.23
-wagtail==2.8
+wagtail==2.9
 wagtail-bakery==0.4.0
 webencodings==0.5.1
 whitenoise==5.0.1
