@@ -30,7 +30,7 @@ s3transfer==0.1.13
 six==1.11.0
 sqlparse==0.3.0
 Unidecode==1.0.22
-urllib3==1.23
+urllib3==1.24.2
 wagtail==2.9
 wagtail-bakery==0.4.0
 webencodings==0.5.1
