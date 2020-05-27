@@ -15,8 +15,9 @@ WORKDIR /code/
 # Install Netlify - https://github.com/netlify/netlifyctl
 RUN wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 
+RUN mkdir -p /tmp/build
 RUN useradd wagtail
-RUN chown -R wagtail /code
+RUN chown -R wagtail /code /tmp/build
 USER wagtail
 
 CMD ["./run.sh"]
