@@ -26,7 +26,7 @@ NETLIFY_TOKEN
 
 `heroku run make build`
 
-## Todo
+## Todo
 
  - [x] Blog home and details models
  - [x] Base styles using Tachyons
