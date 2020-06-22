@@ -21,6 +21,7 @@ if "ALLOWED_HOSTS" in env:
 INSTALLED_APPS = [
     "home",
     "blog",
+    "corsheaders",
     "search",
     "rest_framework",
     "wagtail.api.v2",
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
