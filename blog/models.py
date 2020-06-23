@@ -4,8 +4,22 @@ from wagtail.core.fields import StreamField
 from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.api import APIField
-from wagtail.images.blocks import ImageChooserBlock
+from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
+
+
+class ImageChooserBlock(DefaultImageChooserBlock):
+    # https://hodovi.cc/blog/recipes-when-building-headless-cms-wagtails-api/
+    def get_api_representation(self, value, context=None):
+        if value:
+            original = value.get_rendition("original").attrs_dict
+            width = 1600 if original["width"] > original["height"] else 1200
+            return {
+                "id": value.id,
+                "title": value.title,
+                "original": original,
+                "medium": value.get_rendition(f"width-{width}").attrs_dict,
+            }
 
 
 class BlogPage(Page):
