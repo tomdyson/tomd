@@ -146,3 +146,5 @@ BASE_URL = "http://example.com"
 BAKERY_MULTISITE = False
 BUILD_DIR = env.get("BUILD_DIR", "/tmp/build/")
 BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
+
+CORS_ORIGIN_ALLOW_ALL = True
