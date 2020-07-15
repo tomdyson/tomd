@@ -10,7 +10,11 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 env = os.environ.copy()
 
 if "SENTRY_DSN" in env:
-    sentry_sdk.init(dsn=os.environ["SENTRY_DSN"], integrations=[DjangoIntegration()])
+    sentry_sdk.init(
+        dsn=os.environ["SENTRY_DSN"],
+        integrations=[DjangoIntegration()],
+        traces_sample_rate=1.0,
+    )
 
 if "SECRET_KEY" in env:
     SECRET_KEY = env["SECRET_KEY"]
@@ -47,6 +51,7 @@ INSTALLED_APPS = [
     "bakery",
     "wagtailbakery",
     "wagtailnetlify",
+    # "fakenews",
 ]
 
 MIDDLEWARE = [
