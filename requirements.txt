@@ -46,7 +46,7 @@ toml==0.10.1
 typed-ast==1.4.1
 Unidecode==1.0.22
 urllib3==1.24.2
-wagtail==2.9
+wagtail==2.9.3
 wagtail-bakery==0.4.0
 wagtailnetlify==0.4
 webencodings==0.5.1
