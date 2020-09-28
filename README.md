@@ -2,7 +2,7 @@
 
 ## Local setup
 
-`workon wagtail-tomd`
+`source venv/bin/activate`
 
 ## Run on Heroku
 
@@ -30,5 +30,5 @@ NETLIFY_TOKEN
 
  - [x] Blog home and details models
  - [x] Base styles using Tachyons
- - [ ] Download Source Serif Pro, which now has italics.
-    - https://github.com/adobe-fonts/source-serif-pro
+ - [x] Enable API
+ - [ ] Headless preview
