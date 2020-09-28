@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     "bakery",
     "wagtailbakery",
     "wagtailnetlify",
-    # "fakenews",
+    "fakenews",
 ]
 
 MIDDLEWARE = [
