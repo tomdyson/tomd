@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "wagtailbakery",
     "wagtailnetlify",
     "fakenews",
+    "wagtail_headless_preview",
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
@@ -154,3 +154,6 @@ BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 
 CORS_ORIGIN_ALLOW_ALL = True
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
+HEADLESS_PREVIEW_CLIENT_URLS = {
+    "default": "http://localhost:3000/preview",
+}

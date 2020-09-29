@@ -7,6 +7,7 @@ from wagtail.api import APIField
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock as DefaultEmbedBlock
 from wagtail.embeds.embeds import get_embed
+from wagtail_headless_preview.models import HeadlessPreviewMixin
 
 
 class ImageChooserBlock(DefaultImageChooserBlock):
@@ -30,7 +31,7 @@ class EmbedBlock(DefaultEmbedBlock):
             return {"url": value.url, "html": embed.html}
 
 
-class BlogPage(Page):
+class BlogPage(HeadlessPreviewMixin, Page):
     date = models.DateField("Post date")
     body = StreamField(
         [
