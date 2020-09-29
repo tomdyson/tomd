@@ -5,7 +5,8 @@ from wagtail.core import blocks
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.api import APIField
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
-from wagtail.embeds.blocks import EmbedBlock
+from wagtail.embeds.blocks import EmbedBlock as DefaultEmbedBlock
+from wagtail.embeds.embeds import get_embed
 
 
 class ImageChooserBlock(DefaultImageChooserBlock):
@@ -20,6 +21,13 @@ class ImageChooserBlock(DefaultImageChooserBlock):
                 "original": original,
                 "medium": value.get_rendition(f"width-{width}").attrs_dict,
             }
+
+
+class EmbedBlock(DefaultEmbedBlock):
+    def get_api_representation(self, value, context=None):
+        if value:
+            embed = get_embed(value.url, max_width=612)
+            return {"url": value.url, "html": embed.html}
 
 
 class BlogPage(Page):
