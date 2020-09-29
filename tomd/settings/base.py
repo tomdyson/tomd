@@ -155,5 +155,5 @@ BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 CORS_ORIGIN_ALLOW_ALL = True
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
 HEADLESS_PREVIEW_CLIENT_URLS = {
-    "default": "http://localhost:3000/preview",
+    "default": "https://preview.tomd.org/preview",
 }
