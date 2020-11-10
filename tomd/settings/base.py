@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "wagtail.api.v2",
     "wagtail.contrib.forms",
+    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
     "wagtail.sites",
@@ -161,3 +162,4 @@ HEADLESS_PREVIEW_CLIENT_URLS = {
 
 if "NETLIFY_BUILD_HOOK" in env:
     NETLIFY_BUILD_HOOK = env["NETLIFY_BUILD_HOOK"]
+    NETLIFY_AUTO_DEPLOY = True
