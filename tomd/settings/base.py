@@ -144,9 +144,9 @@ if "AWS_STORAGE_BUCKET_NAME" in env:
 # Wagtail settings
 WAGTAIL_SITE_NAME = "tomd"
 
-# Base URL to use when referring to full URLs within the Wagtail admin backend -
+# Base URL to use when referring to full URLs within the Wagtail admin backend,
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = "http://example.com"
+BASE_URL = "http://tomd.org"
 
 BAKERY_MULTISITE = False
 BUILD_DIR = env.get("BUILD_DIR", "/tmp/build/")
@@ -157,3 +157,6 @@ WAGTAILEMBEDS_RESPONSIVE_HTML = True
 HEADLESS_PREVIEW_CLIENT_URLS = {
     "default": "https://preview.tomd.org/preview",
 }
+
+if "NETLIFY_BUILD_HOOK" in env:
+    NETLIFY_BUILD_HOOK = env["NETLIFY_BUILD_HOOK"]
