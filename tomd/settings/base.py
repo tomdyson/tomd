@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "wagtailnetlify",
     "fakenews",
     "wagtail_headless_preview",
+    "wagtailmedia",
 ]
 
 MIDDLEWARE = [
