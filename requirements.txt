@@ -59,7 +59,7 @@ wagtail-bakery==0.4.0
 wagtail-fakenews==0.1.2
 wagtail-headless-preview==0.1.4
 wagtailmedia==0.7.0
-wagtailnetlify==0.5
+wagtailnetlify==0.7
 webencodings==0.5.1
 whitenoise==5.0.1
 Willow==1.4
