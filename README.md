@@ -31,4 +31,4 @@ NETLIFY_TOKEN
  - [x] Blog home and details models
  - [x] Base styles using Tachyons
  - [x] Enable API
- - [ ] Headless preview
+ - [x] Headless preview
