@@ -2,6 +2,7 @@ from django.db import models
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
+from wagtail.core.templatetags.wagtailcore_tags import richtext
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.api import APIField
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
@@ -31,6 +32,14 @@ class EmbedBlock(DefaultEmbedBlock):
             return {"url": value.url, "html": embed.html}
 
 
+class RichTextBlock(blocks.RichTextBlock):
+    """Custom Rich Text Block returning HTML as its API representation"""
+
+    def get_api_representation(self, value, context=None):
+        # convert internal rich text format to HTML
+        return richtext(value.source)
+
+
 class BlogPage(HeadlessPreviewMixin, Page):
     date = models.DateField("Post date")
     body = StreamField(
@@ -38,9 +47,7 @@ class BlogPage(HeadlessPreviewMixin, Page):
             ("heading", blocks.CharBlock(classname="full title", icon="title")),
             (
                 "paragraph",
-                blocks.RichTextBlock(
-                    icon="pilcrow", features=["bold", "italic", "link"]
-                ),
+                RichTextBlock(icon="pilcrow", features=["bold", "italic", "link"]),
             ),
             ("image", ImageChooserBlock(icon="image")),
             ("embed", EmbedBlock(icon="media")),
