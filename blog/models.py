@@ -1,4 +1,5 @@
 from django.db import models
+from smartypants import smartypants
 from wagtail.core.models import Page
 from wagtail.core.fields import StreamField
 from wagtail.core import blocks
@@ -35,9 +36,15 @@ class EmbedBlock(DefaultEmbedBlock):
 class RichTextBlock(blocks.RichTextBlock):
     """Custom Rich Text Block returning HTML as its API representation"""
 
+    def clean_and_smarten(self, str):
+        #  replace HTML quotes and double quotes with ASCII equivalents,
+        # then convert these to smart HTML quotes
+        clean = str.replace("&#x27;", "'").replace("&quot;", '"')
+        return smartypants(clean)
+
     def get_api_representation(self, value, context=None):
         # convert internal rich text format to HTML
-        return richtext(value.source)
+        return richtext(self.clean_and_smarten(value.source))
 
 
 class BlogPage(HeadlessPreviewMixin, Page):
