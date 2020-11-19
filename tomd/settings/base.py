@@ -49,8 +49,6 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "bakery",
-    "wagtailbakery",
     "wagtailnetlify",
     "fakenews",
     "wagtail_headless_preview",
@@ -101,9 +99,6 @@ else:
     }
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -119,9 +114,7 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
 STATICFILES_DIRS = [os.path.join(PROJECT_DIR, "static")]
-
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -147,12 +140,8 @@ if "AWS_STORAGE_BUCKET_NAME" in env:
 WAGTAIL_SITE_NAME = "tomd"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend,
-# e.g. in notification emails. Don't include '/admin' or a trailing slash
+# e.g. in notification emails.
 BASE_URL = "http://tomd.org"
-
-BAKERY_MULTISITE = False
-BUILD_DIR = env.get("BUILD_DIR", "/tmp/build/")
-BAKERY_VIEWS = ("wagtailbakery.views.AllPublishedPagesView",)
 
 CORS_ORIGIN_ALLOW_ALL = True
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
@@ -160,6 +149,7 @@ HEADLESS_PREVIEW_CLIENT_URLS = {
     "default": "https://preview.tomd.org/preview",
 }
 
-if "NETLIFY_BUILD_HOOK" in env:
-    NETLIFY_BUILD_HOOK = env["NETLIFY_BUILD_HOOK"]
-    NETLIFY_AUTO_DEPLOY = True
+# Netlify config
+NETLIFY_API_TOKEN = env.get("NETLIFY_API_TOKEN")
+NETLIFY_BUILD_HOOK = env.get("NETLIFY_BUILD_HOOK")
+NETLIFY_SITE_ID = env.get("NETLIFY_SITE_ID")
