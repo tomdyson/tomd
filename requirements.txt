@@ -4,7 +4,7 @@ asgiref==3.5.1
 attrs==19.3.0
 beautifulsoup4==4.8.0
 black==19.10b0
-boto3==1.13.18
+boto3==1.24.59
 botocore==1.16.18
 certifi==2018.8.24
 chardet==3.0.4
@@ -16,7 +16,7 @@ django-cors-headers==3.4.0
 django-filter==2.4.0
 django-modelcluster==6.0
 django-permissionedforms==0.1
-django-storages==1.9.1
+django-storages==1.13.1
 django-taggit==2.1.0
 django-treebeard==4.5.1
 djangorestframework==3.13.1
