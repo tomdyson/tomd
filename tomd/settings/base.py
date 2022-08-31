@@ -22,6 +22,8 @@ if "SECRET_KEY" in env:
 if "ALLOWED_HOSTS" in env:
     ALLOWED_HOSTS = env["ALLOWED_HOSTS"].split(",")
 
+CSRF_TRUSTED_ORIGINS=["https://wagtail-tomd.fly.dev"]
+
 INSTALLED_APPS = [
     "home",
     "blog",
@@ -153,3 +155,5 @@ HEADLESS_PREVIEW_CLIENT_URLS = {
 NETLIFY_API_TOKEN = env.get("NETLIFY_API_TOKEN")
 NETLIFY_BUILD_HOOK = env.get("NETLIFY_BUILD_HOOK")
 NETLIFY_SITE_ID = env.get("NETLIFY_SITE_ID")
+
+#NETLIFY_API_TOKEN = "NwXLyzCiVDAGXRMllP--asA9Y9lB5Zvco-nY0AhKELA"
