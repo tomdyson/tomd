@@ -57,7 +57,7 @@ toml==0.10.1
 typed-ast==1.4.1
 Unidecode==1.0.22
 urllib3==1.26.5
-wagtail==3.0rc3
+wagtail==3.0.2
 wagtail-bakery==0.4.0
 wagtail-fakenews==0.1.2
 wagtail-headless-preview==0.1.4
