@@ -1,10 +1,10 @@
 from django.db import models
 from smartypants import smartypants
-from wagtail.core.models import Page
-from wagtail.core.fields import StreamField
-from wagtail.core import blocks
-from wagtail.core.templatetags.wagtailcore_tags import richtext
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.models import Page
+from wagtail.fields import StreamField
+from wagtail import blocks
+from wagtail.templatetags.wagtailcore_tags import richtext
+from wagtail.admin.panels import FieldPanel
 from wagtail.api import APIField
 from wagtail.images.blocks import ImageChooserBlock as DefaultImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock as DefaultEmbedBlock
@@ -63,7 +63,7 @@ class BlogPage(HeadlessPreviewMixin, Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("date"),
-        StreamFieldPanel("body"),
+        FieldPanel("body"),
     ]
 
     api_fields = [APIField("date"), APIField("body")]

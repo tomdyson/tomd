@@ -2,8 +2,8 @@
 
 from django.db import migrations, models
 import django.db.models.deletion
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.embeds.blocks
 
 
@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('date', models.DateField(verbose_name='Post date')),
-                ('body', wagtail.core.fields.StreamField([('heading', wagtail.core.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.core.blocks.RichTextBlock(icon='pilcrow')), ('embed', wagtail.embeds.blocks.EmbedBlock(icon='media'))])),
+                ('body', wagtail.fields.StreamField([('heading', wagtail.blocks.CharBlock(classname='full title', icon='title')), ('paragraph', wagtail.blocks.RichTextBlock(icon='pilcrow')), ('embed', wagtail.embeds.blocks.EmbedBlock(icon='media'))])),
             ],
             options={
                 'abstract': False,
