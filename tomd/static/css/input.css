@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .avenir {
+    font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont,
+      "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+      sans-serif;
+  }
+
+  .athelas {
+    font-family: "Source Serif Pro", athelas, georgia, serif;
+  }
+
+  .copy {
+    @apply athelas leading-normal text-gray-800 max-w-2xl mt-5;
+    font-size: 1.4rem;
+  }
+
+  .copy p {
+    @apply mt-5;
+  }
+
+  .copy p a {
+    @apply bg-teal-100;
+  }
+
+  .date {
+    font-size: 1.4rem;
+  }
+}
