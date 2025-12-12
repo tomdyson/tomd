@@ -22,17 +22,17 @@ if "SECRET_KEY" in env:
 if "ALLOWED_HOSTS" in env:
     ALLOWED_HOSTS = env["ALLOWED_HOSTS"].split(",")
 
-CSRF_TRUSTED_ORIGINS=["https://wagtail-tomd.fly.dev"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://wagtail-tomd.fly.dev",
+    "https://tomd.org",
+    "https://www.tomd.org"
+]
 
 INSTALLED_APPS = [
     "home",
     "blog",
-    "corsheaders",
     "search",
-    "rest_framework",
-    "wagtail.api.v2",
     "wagtail.contrib.forms",
-    "wagtail.contrib.modeladmin",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
     "wagtail.sites",
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail.core",
+    "wagtail",
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -51,14 +51,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "wagtailnetlify",
-    # "fakenews",
-    "wagtail_headless_preview",
     "wagtailmedia",
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -143,17 +139,7 @@ WAGTAIL_SITE_NAME = "tomd"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend,
 # e.g. in notification emails.
-BASE_URL = "http://tomd.org"
+BASE_URL = "https://tomd.org"
+WAGTAILADMIN_BASE_URL = "https://tomd.org"
 
-CORS_ORIGIN_ALLOW_ALL = True
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
-HEADLESS_PREVIEW_CLIENT_URLS = {
-    "default": "https://preview.tomd.org/preview",
-}
-
-# Netlify config
-NETLIFY_API_TOKEN = env.get("NETLIFY_API_TOKEN")
-NETLIFY_BUILD_HOOK = env.get("NETLIFY_BUILD_HOOK")
-NETLIFY_SITE_ID = env.get("NETLIFY_SITE_ID")
-
-#NETLIFY_API_TOKEN = "NwXLyzCiVDAGXRMllP--asA9Y9lB5Zvco-nY0AhKELA"

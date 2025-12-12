@@ -1,4 +1,4 @@
-FROM python:3.9.13
+FROM python:3.12
 
 ENV PYTHONUNBUFFERED 1 \
     WEB_CONCURRENCY=3 \
@@ -12,7 +12,10 @@ RUN pip install gunicorn
 COPY . /code/
 WORKDIR /code/
 
-# Install Netlify - https://github.com/netlify/netlifyctl
-# RUN wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
+# Build Tailwind CSS
+RUN chmod +x build-tailwind.sh && ./build-tailwind.sh
+
+# Collect static files
+RUN python manage.py collectstatic --noinput
 
 CMD ["./run.sh"]
