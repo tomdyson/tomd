@@ -105,3 +105,6 @@ pythonenv3.8/
 *.sqlite3
 /static/*
 /media/*
+
+# Tailwind CLI binary
+tailwindcss
