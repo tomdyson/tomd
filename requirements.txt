@@ -1,33 +1,55 @@
-# Core Django & Wagtail
-Django==5.1.4
-wagtail==6.3.1
-
-# Database
-dj-database-url==0.5.0
-psycopg2-binary==2.9.10
-
-# Storage & Media
+anyascii==0.3.3
+asgiref==3.11.0
+beautifulsoup4==4.12.3
+black==24.10.0
 boto3==1.35.90
-django-storages==1.14.4
-Pillow==11.0.0
-Willow==1.6.3
-wagtailmedia==0.15.2
-
-# Wagtail dependencies
+botocore==1.35.99
+certifi==2025.11.12
+charset-normalizer==3.4.4
+click==8.3.1
+defusedxml==0.7.1
+dj-database-url==0.5.0
+django==5.1.4
+django-filter==24.3
 django-modelcluster==6.3
+django-permissionedforms==0.1
+django-storages==1.14.4
 django-taggit==5.0.1
 django-treebeard==4.7.1
-
-# Static files
-whitenoise==6.8.2
-
-# Monitoring
-sentry-sdk==2.19.2
-
-# Text formatting
-smartypants==2.0.1
-
-# Development tools
-black==24.10.0
+djangorestframework==3.16.1
+draftjs-exporter==5.1.0
+et-xmlfile==2.0.0
+faker==32.1.0
+filetype==1.2.0
 flake8==7.1.1
-Faker==32.1.0
+idna==3.11
+jmespath==1.0.1
+l18n==2021.3
+laces==0.1.2
+mccabe==0.7.0
+mypy-extensions==1.1.0
+openpyxl==3.1.5
+packaging==25.0
+pathspec==0.12.1
+pillow==11.0.0
+pillow-heif==0.22.0
+platformdirs==4.5.1
+psycopg2-binary==2.9.10
+pycodestyle==2.12.1
+pyflakes==3.2.0
+python-dateutil==2.9.0.post0
+pytz==2025.2
+requests==2.32.5
+s3transfer==0.10.4
+sentry-sdk==2.19.2
+six==1.17.0
+smartypants==2.0.1
+soupsieve==2.8
+sqlparse==0.5.4
+telepath==0.3.1
+typing-extensions==4.15.0
+urllib3==2.6.2
+wagtail==6.3.1
+wagtailmedia==0.15.2
+whitenoise==6.8.2
+willow==1.11.0

@@ -1,32 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer components {
-  .avenir {
-    font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont,
-      "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
-      sans-serif;
-  }
+.avenir {
+  font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont,
+    "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
+    sans-serif;
+}
 
-  .athelas {
-    font-family: "Source Serif Pro", athelas, georgia, serif;
-  }
+.athelas {
+  font-family: "Source Serif Pro", athelas, georgia, serif;
+}
 
-  .copy {
-    @apply athelas leading-normal text-gray-800 max-w-2xl mt-5;
-    font-size: 1.4rem;
-  }
+.copy {
+  line-height: 1.5;
+  color: #1f2937;
+  max-width: 42rem;
+  margin-top: 1.25rem;
+  font-family: "Source Serif Pro", athelas, georgia, serif;
+  font-size: 1.4rem;
+}
 
-  .copy p {
-    @apply mt-5;
-  }
+.copy p {
+  margin-top: 1.25rem;
+}
 
-  .copy p a {
-    @apply bg-teal-100;
-  }
+.copy p a {
+  background-color: #ccfbf1;
+}
 
-  .date {
-    font-size: 1.4rem;
-  }
+.date {
+  font-size: 1.4rem;
 }
