@@ -5,6 +5,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+  DJANGO_SETTINGS_MODULE = "tomd.settings.production"
 
 [experimental]
   allowed_public_ports = []
