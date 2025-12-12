@@ -22,7 +22,11 @@ if "SECRET_KEY" in env:
 if "ALLOWED_HOSTS" in env:
     ALLOWED_HOSTS = env["ALLOWED_HOSTS"].split(",")
 
-CSRF_TRUSTED_ORIGINS=["https://wagtail-tomd.fly.dev"]
+CSRF_TRUSTED_ORIGINS = [
+    "https://wagtail-tomd.fly.dev",
+    "https://tomd.org",
+    "https://www.tomd.org"
+]
 
 INSTALLED_APPS = [
     "home",
@@ -135,6 +139,7 @@ WAGTAIL_SITE_NAME = "tomd"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend,
 # e.g. in notification emails.
-BASE_URL = "http://tomd.org"
+BASE_URL = "https://tomd.org"
+WAGTAILADMIN_BASE_URL = "https://tomd.org"
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True

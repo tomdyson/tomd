@@ -16,7 +16,6 @@ django-permissionedforms==0.1
 django-storages==1.14.4
 django-taggit==5.0.1
 django-treebeard==4.7.1
-djangorestframework==3.16.1
 draftjs-exporter==5.1.0
 et-xmlfile==2.0.0
 faker==32.1.0
