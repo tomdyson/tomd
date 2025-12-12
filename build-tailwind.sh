@@ -7,4 +7,4 @@ if [ ! -f ./tailwindcss ]; then
 fi
 
 # Build Tailwind CSS
-./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css --minify
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css --minify
