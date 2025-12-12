@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 .avenir {
   font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont,

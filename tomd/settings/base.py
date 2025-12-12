@@ -131,6 +131,9 @@ STORAGES = {
     },
 }
 
+# Allow CSS files with @import statements that reference non-file paths (like Tailwind v4's @import "tailwindcss")
+WHITENOISE_MANIFEST_STRICT = False
+
 
 # Wagtail settings
 WAGTAIL_SITE_NAME = "tomd"
