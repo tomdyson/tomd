@@ -5,9 +5,7 @@
 <div class="container sm:px-16 px-6 pt-8 max-w-5xl">
     {% for post in blogpages %}
     <div class="pb-4">
-        <h2 class="text-5xl avenir font-bold leading-none text-gray-800 pb-6">
-            <a href="{% pageurl post %}" class="no-underline text-gray-800">{{ post.title }}</a>
-        </h2>
+        <a href="{% pageurl post %}" class="text-5xl avenir font-bold leading-none text-gray-800 pb-6 no-underline block">{{ post.title }}</a>
         <p class="date pt-0 pb-4 athelas font-light text-red-400 date-format" data-date="{{ post.specific.date|date:'Y-m-d' }}">
             {{ post.specific.date }}
         </p>
