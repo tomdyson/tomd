@@ -25,7 +25,8 @@ if "ALLOWED_HOSTS" in env:
 CSRF_TRUSTED_ORIGINS = [
     "https://wagtail-tomd.fly.dev",
     "https://tomd.org",
-    "https://www.tomd.org"
+    "https://www.tomd.org",
+    "https://tomd.co.tomd.org"
 ]
 
 INSTALLED_APPS = [
