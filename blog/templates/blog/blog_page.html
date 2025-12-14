@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container sm:px-16 px-6 pt-8 max-w-5xl">
-    <h1 class="text-5xl avenir font-bold leading-none text-gray-800 pb-6">{{ page.title }}</h1>
+    <h1 class="text-5xl avenir font-bold leading-none tracking-tight text-gray-800 pb-6">{{ page.title }}</h1>
     <p class="athelas text-xl py-4 text-gray-600 date-format" data-date="{{ page.date|date:'Y-m-d' }}">
         {{ page.date }}
     </p>
@@ -11,7 +11,7 @@
     <div class="copy">
         {% for block in page.body %}
             {% if block.block_type == 'heading' %}
-                <h2 class="text-xl pb-4 leading-tight">{{ block.value }}</h2>
+                <h2 class="text-xl pb-4 leading-tight tracking-tight">{{ block.value }}</h2>
             {% elif block.block_type == 'paragraph' %}
                 {{ block.value|richtext }}
             {% elif block.block_type == 'image' %}
