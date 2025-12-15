@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@source "../../templates/**/*.html";
+@source "../../../home/templates/**/*.html";
+@source "../../../blog/templates/**/*.html";
+
 .avenir {
   font-family: "avenir next", avenir, -apple-system, BlinkMacSystemFont,
     "helvetica neue", helvetica, ubuntu, roboto, noto, "segoe ui", arial,
