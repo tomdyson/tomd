@@ -19,8 +19,18 @@
   font-size: 1.4rem;
 }
 
+/* Consecutive .copy blocks don't need extra margin */
+.copy + .copy {
+  margin-top: 0;
+}
+
 .copy p {
   margin-top: 1.25rem;
+}
+
+/* First paragraph doesn't need top margin since .copy provides it */
+.copy p:first-child {
+  margin-top: 0;
 }
 
 .copy p a {

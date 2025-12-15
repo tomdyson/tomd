@@ -5,22 +5,21 @@
 <div class="container sm:px-16 px-6 pt-8 max-w-5xl">
     <h1 class="text-5xl avenir font-bold leading-none tracking-tight text-gray-800 pb-6">{{ page.title }}</h1>
 
-
-    <div class="copy">
-        {% for block in page.body %}
-        {% if block.block_type == 'heading' %}
-        <h2 class="text-xl pb-4 leading-tight tracking-tight">{{ block.value }}</h2>
+    {% for block in page.body %}
+        {% if block.block_type == 'image' %}
+            {% image block.value width-1600 class="my-2 rounded" %}
+        {% elif block.block_type == 'heading' %}
+            <h2 class="athelas text-xl mt-8 pb-4 leading-tight tracking-tight max-w-2xl">{{ block.value }}</h2>
         {% elif block.block_type == 'paragraph' %}
-        {{ block.value|richtext }}
-        {% elif block.block_type == 'image' %}
-        {% image block.value width-1600 class="my-2 rounded" %}
+            <div class="copy">
+                {{ block.value|richtext }}
+            </div>
         {% elif block.block_type == 'embed' %}
-        <div class="my-2">
-            {{ block.value }}
-        </div>
+            <div class="my-2">
+                {{ block.value }}
+            </div>
         {% endif %}
-        {% endfor %}
-    </div>
+    {% endfor %}
 
     <p class="athelas text-xl py-4 text-gray-600 date-format" data-date="{{ page.date|date:'Y-m-d' }}">
         {{ page.date }}
