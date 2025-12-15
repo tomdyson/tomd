@@ -4,7 +4,7 @@ A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and d
 
 ## Tech Stack
 
-- **Backend**: Django 5.1.4 + Wagtail 6.3.1
+- **Backend**: Django 5.1.15 + Wagtail 7.2.1
 - **Python**: 3.12
 - **Styling**: Tailwind CSS (standalone CLI)
 - **Database**: PostgreSQL (production) / SQLite (development)

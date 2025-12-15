@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a monolithic Wagtail CMS site for tomd.org. The project was recently consolidated from a headless Wagtail + Nuxt.js architecture into a traditional server-rendered Django/Wagtail application.
 
 **Stack:**
-- Django 5.1.4 + Wagtail 6.3.1
+- Django 5.1.15 + Wagtail 7.2.1
 - Python 3.12
 - PostgreSQL (production) / SQLite (local dev)
 - Tailwind CSS (standalone CLI)
