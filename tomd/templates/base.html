@@ -2,69 +2,72 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>
-            {% block title %}
-                {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-                {% with self.get_site.site_name as site_name %}
-                    {% if site_name %} - {{ site_name }}{% endif %}
-                {% endwith %}
-            {% endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>
+        {% block title %}
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}
+        {% endblock %}
+        {% block title_suffix %}
+        {% with self.get_site.site_name as site_name %}
+        {% if site_name %} - {{ site_name }}{% endif %}
+        {% endwith %}
+        {% endblock %}
+    </title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- Tailwind CSS -->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/tailwind.css' %}">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
 
-        <!-- Self-hosted fonts -->
-        <style>
-          /* source-serif-pro-regular - latin */
-          @font-face {
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tailwind.css' %}">
+
+    <!-- Self-hosted fonts -->
+    <style>
+        /* source-serif-pro-regular - latin */
+        @font-face {
             font-family: "Source Serif Pro";
             font-style: normal;
             font-weight: 400;
             src: url("{% static 'fonts/source-serif-pro-v10-latin-regular.woff2' %}") format("woff2"),
-                 url("{% static 'fonts/source-serif-pro-v10-latin-regular.woff' %}") format("woff");
-          }
+            url("{% static 'fonts/source-serif-pro-v10-latin-regular.woff' %}") format("woff");
+        }
 
-          /* source-serif-pro-italic - latin */
-          @font-face {
+        /* source-serif-pro-italic - latin */
+        @font-face {
             font-family: "Source Serif Pro";
             font-style: italic;
             font-weight: 400;
             src: url("{% static 'fonts/source-serif-pro-v10-latin-italic.woff2' %}") format("woff2"),
-                 url("{% static 'fonts/source-serif-pro-v10-latin-italic.woff' %}") format("woff");
-          }
-        </style>
+            url("{% static 'fonts/source-serif-pro-v10-latin-italic.woff' %}") format("woff");
+        }
+    </style>
 
-        <!-- Umami Analytics -->
-        <script defer src="https://umami.co.tomd.org/script.js" data-website-id="b05b00e9-e212-4a7d-9ca1-9610308b22fa"></script>
-    </head>
+    <!-- Umami Analytics -->
+    <script defer src="https://umami.co.tomd.org/script.js"
+        data-website-id="b05b00e9-e212-4a7d-9ca1-9610308b22fa"></script>
+</head>
 
-    <body class="athelas text-gray-800">
-        {% wagtailuserbar %}
+<body class="athelas text-gray-800">
+    {% wagtailuserbar %}
 
-        <header class="sm:px-16 px-6 pt-8 pb-6 border-b border-gray-200 border-opacity-75">
-            <h4 class="text-xl avenir font-normal">
-                <a href="/" class="no-underline text-gray-800">tomd.org</a>
-                <span class="text-gray-600"> ~ </span>
-                <a href="/about/" class="no-underline text-gray-600">about</a>
-            </h4>
-        </header>
+    <header class="sm:px-16 px-6 pt-8 pb-6 border-b border-gray-100">
+        <h4 class="text-xl avenir font-normal">
+            <a href="/" class="no-underline text-gray-800">tomd.org</a>
+            <span class="text-gray-600"> ~ </span>
+            <a href="/about/" class="no-underline text-gray-400">about</a>
+        </h4>
+    </header>
 
-        <main>
-            {% block content %}{% endblock %}
-        </main>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        {# Global javascript #}
-        <script type="text/javascript" src="{% static 'js/tomd.js' %}"></script>
-    </body>
+    {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/tomd.js' %}"></script>
+</body>
+
 </html>
