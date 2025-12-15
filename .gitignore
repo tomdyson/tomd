@@ -108,3 +108,6 @@ pythonenv3.8/
 
 # Tailwind CLI binary
 tailwindcss
+
+# Generated Tailwind CSS (rebuilt during Docker build)
+tomd/static/css/tailwind.css
