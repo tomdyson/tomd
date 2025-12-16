@@ -1,7 +1,7 @@
 import os
 from .base import *
 
-DEBUG = False
+DEBUG = True
 
 # AWS S3 Configuration
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
