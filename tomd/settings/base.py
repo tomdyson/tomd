@@ -33,8 +33,10 @@ INSTALLED_APPS = [
     "home",
     "blog",
     "search",
+    "wagtail_ai",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.settings",
     "wagtail.embeds",
     "wagtail.sites",
     "wagtail.users",
@@ -145,3 +147,28 @@ BASE_URL = "https://tomd.org"
 WAGTAILADMIN_BASE_URL = "https://tomd.org"
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True
+
+WAGTAIL_AI = {
+    "PROVIDERS": {
+        "default": {
+            "provider": "openai",
+            "model": "gpt-5-mini",
+        },
+        "vision": {
+            "provider": "openai",
+            "model": "gpt-5-mini",
+        },
+    },
+    # For legacy rich text editor integration
+    "BACKENDS": {
+        "default": {
+            "CLASS": "wagtail_ai.ai.llm.LLMBackend",
+            "CONFIG": {
+                # Model ID recognizable by the "LLM" library.
+                "MODEL_ID": "gpt-5-mini",
+            },
+        },
+    },
+}
+
+WAGTAILIMAGES_IMAGE_FORM_BASE = "wagtail_ai.forms.DescribeImageForm"
