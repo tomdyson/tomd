@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.urls import include, re_path
 from django.contrib import admin
+from django.views.generic import RedirectView
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
@@ -10,6 +11,11 @@ urlpatterns = [
     re_path(r"^django-admin/", admin.site.urls),
     re_path(r"^admin/", include(wagtailadmin_urls)),
     re_path(r"^documents/", include(wagtaildocs_urls)),
+    # Redirect /x/* to S3 share bucket (migrated from Netlify redirect rule)
+    re_path(
+        r"^x/(?P<path>.*)$",
+        RedirectView.as_view(url="https://tom.s3.amazonaws.com/share/%(path)s", permanent=True),
+    ),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
