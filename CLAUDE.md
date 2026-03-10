@@ -67,10 +67,10 @@ chmod +x tailwindcss-linux-x64
 mv tailwindcss-linux-x64 tailwindcss
 
 # Build Tailwind CSS (development)
-./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css
+./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css
 
 # Build Tailwind CSS (production - minified)
-./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css --minify
+./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css --minify
 ```
 
 **Collecting Static Files:**
@@ -137,7 +137,7 @@ Default: `tomd.settings.dev` (set in `manage.py`)
 
 **Styling:**
 - Uses Tailwind CSS (standalone CLI, not npm)
-- Input: `tomd/static/css/input.css`
+- Input: `static/css/input.css`
 - Output: `tomd/static/css/tailwind.css`
 - Config: `tailwind.config.js` in project root
 - Custom fonts: Source Serif Pro (self-hosted in `tomd/static/fonts/`)
@@ -242,8 +242,8 @@ The Dockerfile:
 7. Save and publish
 
 ### Updating Styles
-1. Edit `tomd/static/css/input.css` for custom CSS
-2. Rebuild Tailwind: `./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css`
+1. Edit `static/css/input.css` for custom CSS
+2. Rebuild Tailwind: `./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css`
 3. Refresh browser (collectstatic not needed for local dev with DEBUG=True)
 
 ### Working with Tailwind Classes in Templates
