@@ -4,12 +4,12 @@ A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and d
 
 ## Tech Stack
 
-- **Backend**: Django 5.1.15 + Wagtail 7.2.1
+- **Backend**: Django 5.1.15 + Wagtail 7.3.1
 - **Python**: 3.12
 - **Styling**: Tailwind CSS (standalone CLI)
 - **Database**: PostgreSQL (production) / SQLite (development)
 - **Media Storage**: AWS S3 (production) / Local filesystem (development)
-- **Deployment**: Fly.io with Docker
+- **Deployment**: Coolify with Docker
 - **Analytics**: Umami (self-hosted)
 
 ## Project Structure
@@ -137,18 +137,9 @@ Optional:
 | `AWS_S3_CUSTOM_DOMAIN` | CloudFront/CDN domain for media |
 | `MEDIA_URL` | Custom media URL |
 
-### Deploy to Fly.io
+### Deploy to Coolify
 
-```bash
-# Deploy
-fly deploy
-
-# View logs
-fly logs
-
-# SSH into container
-fly ssh console
-```
+Deployments are triggered automatically on push to the `master` branch via Coolify's GitHub integration.
 
 ### Docker Build
 
@@ -186,7 +177,6 @@ flake8
 
 - **Main site**: https://tomd.org
 - **Admin**: https://tomd.org/admin/
-- **Direct Fly URL**: https://wagtail-tomd.fly.dev
 
 ## Documentation
 
