@@ -111,3 +111,7 @@ tailwindcss
 
 # Generated Tailwind CSS (rebuilt during Docker build)
 tomd/static/css/tailwind.css
+
+# Production data backups (should never be in git)
+production_data.json
+production_backup_*.json
