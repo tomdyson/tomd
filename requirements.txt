@@ -11,7 +11,7 @@ defusedxml==0.7.1
 dj-database-url==0.5.0
 django==5.1.15
 django-filter==24.3
-django-modelcluster==6.3
+django-modelcluster==6.4.1
 django-permissionedforms==0.1
 django-storages==1.14.4
 django-taggit==5.0.1
@@ -48,7 +48,7 @@ sqlparse==0.5.4
 telepath==0.3.1
 typing-extensions==4.15.0
 urllib3==2.6.3
-wagtail==7.2.3
+wagtail==7.3.1
 wagtail-ai==3.0.0
 wagtailmedia==0.15.2
 whitenoise==6.8.2
