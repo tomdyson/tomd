@@ -1,6 +1,6 @@
 # tomd.org
 
-A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and deployed on [Fly.io](https://fly.io/).
+A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and deployed on Coolify.
 
 ## Tech Stack
 
@@ -9,7 +9,10 @@ A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and d
 - **Styling**: Tailwind CSS (standalone CLI)
 - **Database**: PostgreSQL (production) / SQLite (development)
 - **Media Storage**: AWS S3 (production) / Local filesystem (development)
+- **Static Files**: WhiteNoise
+- **CMS Extensions**: wagtail-ai, wagtailmedia
 - **Deployment**: Coolify with Docker
+- **Monitoring**: Sentry
 - **Analytics**: Umami (self-hosted)
 
 ## Project Structure
@@ -81,17 +84,20 @@ mv tailwindcss-macos-arm64 tailwindcss
 # Linux: use tailwindcss-linux-x64
 
 # Build CSS (development)
-./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css
 
 # Build CSS (production, minified)
-./tailwindcss -i ./tomd/static/css/input.css -o ./tomd/static/css/tailwind.css --minify
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css --minify
+
+# Or use the helper script used in Docker builds
+./build-tailwind.sh
 ```
 
 ## Content Management
 
 ### Page Types
 
-- **HomePage**: Displays a list of all blog posts in reverse chronological order
+- **HomePage**: Displays live blog posts marked for menus, in reverse chronological order
 - **BlogPage**: Individual blog posts with rich content via StreamField
   - Supports headings, paragraphs (with smart typography), images, and embeds
 
@@ -104,6 +110,8 @@ mv tailwindcss-macos-arm64 tailwindcss
 | `/[slug]/` | Individual blog posts |
 | `/admin/` | Wagtail admin panel |
 | `/django-admin/` | Django admin panel |
+| `/documents/` | Wagtail document serving |
+| `/x/[path]` | Redirects to the S3 share bucket |
 
 ### Adding a New Blog Post
 
@@ -141,6 +149,8 @@ Optional:
 
 Deployments are triggered automatically on push to the `master` branch via Coolify's GitHub integration.
 
+The container startup command also runs database migrations and `collectstatic` before starting Gunicorn.
+
 ### Docker Build
 
 The Dockerfile:
@@ -161,7 +171,7 @@ The blog uses the [smartypants](https://pypi.org/project/smartypants/) library t
 ### Settings
 
 - Development: `tomd.settings.dev` (DEBUG=True, SQLite, simple SECRET_KEY)
-- Production: `tomd.settings.production` (DEBUG=False, PostgreSQL, S3 storage)
+- Production: `tomd.settings.production` (PostgreSQL, S3 storage)
 
 ### Code Quality
 
@@ -184,6 +194,10 @@ flake8
 - `TEST.md` - Comprehensive testing procedures
 - `MIGRATION_PLAN.md` - Architecture migration documentation
 - `MIGRATED.md` - Migration completion report
+
+## Notes
+
+- `fly.toml` remains in the repository as legacy infrastructure config, but the active deployment target is Coolify.
 
 ## License
 
