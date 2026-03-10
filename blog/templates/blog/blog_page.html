@@ -7,7 +7,7 @@
 
     {% for block in page.body %}
         {% if block.block_type == 'image' %}
-            {% image block.value width-1600 class="my-2 rounded" %}
+            {% image block.value width-1600 class="my-2 rounded max-h-[75vh] w-auto block" %}
         {% elif block.block_type == 'heading' %}
             <h2 class="athelas text-xl mt-8 pb-4 leading-tight tracking-tight max-w-2xl">{{ block.value }}</h2>
         {% elif block.block_type == 'paragraph' %}
