@@ -1,6 +1,6 @@
 FROM python:3.12
 
-ENV PYTHONUNBUFFERED 1 \
+ENV PYTHONUNBUFFERED=1 \
     WEB_CONCURRENCY=3 \
     GUNICORN_CMD_ARGS="--max-requests 1200 " \
     DJANGO_SETTINGS_MODULE=tomd.settings.production

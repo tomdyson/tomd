@@ -23,7 +23,6 @@ if "ALLOWED_HOSTS" in env:
     ALLOWED_HOSTS = env["ALLOWED_HOSTS"].split(",")
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://wagtail-tomd.fly.dev",
     "https://tomd.org",
     "https://www.tomd.org",
     "https://tomd.co.tomd.org"
@@ -32,7 +31,6 @@ CSRF_TRUSTED_ORIGINS = [
 INSTALLED_APPS = [
     "home",
     "blog",
-    "search",
     "wagtail_ai",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -109,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-gb"
 TIME_ZONE = "UTC"
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
 STATICFILES_FINDERS = [
@@ -143,7 +140,6 @@ WAGTAIL_SITE_NAME = "tomd"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend,
 # e.g. in notification emails.
-BASE_URL = "https://tomd.org"
 WAGTAILADMIN_BASE_URL = "https://tomd.org"
 
 WAGTAILEMBEDS_RESPONSIVE_HTML = True

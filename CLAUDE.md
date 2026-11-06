@@ -11,7 +11,7 @@ This is a monolithic Wagtail CMS site for tomd.org. The project was recently con
 - Python 3.12
 - PostgreSQL (production) / SQLite (local dev)
 - Tailwind CSS (standalone CLI)
-- Deployed on Fly.io
+- Deployed on Coolify (Docker), auto-deploys on push to `master`
 
 ## Development Commands
 
@@ -67,10 +67,10 @@ chmod +x tailwindcss-linux-x64
 mv tailwindcss-linux-x64 tailwindcss
 
 # Build Tailwind CSS (development)
-./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css
 
 # Build Tailwind CSS (production - minified)
-./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css --minify
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css --minify
 ```
 
 **Collecting Static Files:**
@@ -94,14 +94,13 @@ flake8
 Django settings are split into multiple files:
 - `tomd/settings/base.py` - Shared settings
 - `tomd/settings/dev.py` - Development (DEBUG=True, simple SECRET_KEY)
-- `tomd/settings/production.py` - Production (DEBUG=False, S3 storage)
+- `tomd/settings/production.py` - Production (DEBUG=False, S3 storage, secure cookies behind Coolify's HTTPS proxy)
 
 Default: `tomd.settings.dev` (set in `manage.py`)
 
 ### Apps Structure
 - **home** - HomePage model, displays blog post listing on the homepage
 - **blog** - BlogPage model with StreamField for rich content (headings, paragraphs, images, embeds)
-- **search** - Wagtail search functionality (currently basic implementation)
 - **tomd** - Main project app (settings, URLs, base templates, static assets)
 
 ### Content Models
@@ -137,7 +136,7 @@ Default: `tomd.settings.dev` (set in `manage.py`)
 
 **Styling:**
 - Uses Tailwind CSS (standalone CLI, not npm)
-- Input: `static/css/input.css`
+- Input: `tomd/tailwind/input.css`
 - Output: `tomd/static/css/tailwind.css`
 - Config: `tailwind.config.js` in project root
 - Custom fonts: Source Serif Pro (self-hosted in `tomd/static/fonts/`)
@@ -185,7 +184,7 @@ This site was recently consolidated from a headless architecture. The following 
 If you see references to these in old documentation or git history, they are no longer used.
 
 ### StreamField JSON Storage
-BlogPage uses `use_json_field=True` for StreamField, which is required for Wagtail 6.x. This stores StreamField data as native PostgreSQL JSON rather than the old text-based format.
+BlogPage's `body` StreamField is stored as native JSON (the default since Wagtail 6), so no `use_json_field` argument is needed.
 
 ### Smart Typography
 The custom `RichTextBlock` in `blog/models.py` uses the `smartypants` library to automatically convert:
@@ -211,17 +210,8 @@ Optional:
 - `AWS_S3_CUSTOM_DOMAIN` - Custom CloudFront/CDN domain
 - `MEDIA_URL` - Custom media URL
 
-### Fly.io Deployment
-```bash
-# Deploy to Fly.io
-fly deploy
-
-# View logs
-fly logs
-
-# SSH into container
-fly ssh console
-```
+### Coolify Deployment
+Pushing (or merging a PR) to `master` triggers a Coolify build and deploy via its GitHub integration. On container start, `run.sh` runs `migrate` and `collectstatic`, then starts gunicorn.
 
 ### Docker Build
 The Dockerfile:
@@ -242,8 +232,8 @@ The Dockerfile:
 7. Save and publish
 
 ### Updating Styles
-1. Edit `static/css/input.css` for custom CSS
-2. Rebuild Tailwind: `./tailwindcss -i ./static/css/input.css -o ./tomd/static/css/tailwind.css`
+1. Edit `tomd/tailwind/input.css` for custom CSS
+2. Rebuild Tailwind: `./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css`
 3. Refresh browser (collectstatic not needed for local dev with DEBUG=True)
 
 ### Working with Tailwind Classes in Templates
@@ -256,27 +246,17 @@ When you add Tailwind classes to templates, rebuild the CSS to include those uti
 
 ## Testing
 
-Refer to `TEST.md` for comprehensive local testing procedures including:
-- Visual testing checklist
-- Responsive design verification
-- Browser console checks
-- Admin functionality testing
-- Database integrity checks
+There is no automated test suite yet. Before deploying, at minimum run `python manage.py check`, `python manage.py makemigrations --check --dry-run`, and load the homepage, a blog post and `/admin/` locally.
 
 ## Git Workflow
 
-**Main branch:** `master`
-**Current branch:** `monolith` (consolidation work)
+**Main branch:** `master` (deploys to production on every push)
 
 When ready to deploy changes:
 1. Test locally thoroughly
-2. Commit changes with descriptive messages
-3. Push to branch: `git push origin monolith`
-4. Deploy and verify on staging/production
-5. Merge to master: `git checkout master && git merge monolith`
+2. Commit to a feature branch and open a PR against `master`
+3. Merge the PR to deploy, then verify on https://tomd.org
 
 ## Additional Documentation
 
-- `MIGRATION_PLAN.md` - Detailed plan for the headless-to-monolithic migration
-- `TEST.md` - Comprehensive local testing procedures
 - `README.md` - Basic project information and deployment keys

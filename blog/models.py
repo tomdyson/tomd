@@ -29,8 +29,7 @@ class BlogPage(Page):
             ),
             ("image", ImageChooserBlock(icon="image")),
             ("embed", EmbedBlock(icon="media")),
-        ],
-        use_json_field=True,
+        ]
     )
 
     content_panels = Page.content_panels + [
