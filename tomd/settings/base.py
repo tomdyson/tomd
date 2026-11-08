@@ -13,7 +13,7 @@ if "SENTRY_DSN" in env:
     sentry_sdk.init(
         dsn=os.environ["SENTRY_DSN"],
         integrations=[DjangoIntegration()],
-        traces_sample_rate=1.0,
+        traces_sample_rate=0.1,
     )
 
 if "SECRET_KEY" in env:

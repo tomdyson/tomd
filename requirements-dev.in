@@ -1,0 +1,5 @@
+# Development-only tools, on top of the production lock file.
+-r requirements.txt
+black
+flake8
+faker
