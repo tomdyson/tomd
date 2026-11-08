@@ -21,7 +21,6 @@ A personal blog and website built with [Wagtail CMS](https://wagtail.org/) and d
 tomd/
 ├── blog/              # Blog post model and templates
 ├── home/              # Homepage model and templates
-├── search/            # Wagtail search functionality
 ├── tomd/              # Main Django project
 │   ├── settings/      # Split settings (base, dev, production)
 │   ├── static/        # CSS, fonts, JavaScript
@@ -171,7 +170,7 @@ The blog uses the [smartypants](https://pypi.org/project/smartypants/) library t
 ### Settings
 
 - Development: `tomd.settings.dev` (DEBUG=True, SQLite, simple SECRET_KEY)
-- Production: `tomd.settings.production` (PostgreSQL, S3 storage)
+- Production: `tomd.settings.production` (DEBUG=False, PostgreSQL, S3 storage, secure cookies)
 
 ### Code Quality
 
@@ -191,13 +190,6 @@ flake8
 ## Documentation
 
 - `CLAUDE.md` - Detailed development guide for AI assistants
-- `TEST.md` - Comprehensive testing procedures
-- `MIGRATION_PLAN.md` - Architecture migration documentation
-- `MIGRATED.md` - Migration completion report
-
-## Notes
-
-- `fly.toml` remains in the repository as legacy infrastructure config, but the active deployment target is Coolify.
 
 ## License
 

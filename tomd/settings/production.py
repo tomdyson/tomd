@@ -1,7 +1,12 @@
 import os
 from .base import *
 
-DEBUG = True
+DEBUG = False
+
+# HTTPS is terminated at Coolify's proxy, which sets X-Forwarded-Proto
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # AWS S3 Configuration
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
