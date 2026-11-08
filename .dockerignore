@@ -1,3 +1,5 @@
 .git
 .cache
 **/*.env
+production_*.json
+db.sqlite3
