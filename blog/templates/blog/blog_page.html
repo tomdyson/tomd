@@ -12,7 +12,7 @@
             <h2 class="athelas text-xl mt-8 pb-4 leading-tight tracking-tight max-w-2xl">{{ block.value }}</h2>
         {% elif block.block_type == 'paragraph' %}
             <div class="copy">
-                {{ block.value|richtext }}
+                {% include_block block %}
             </div>
         {% elif block.block_type == 'embed' %}
             <div class="my-2">

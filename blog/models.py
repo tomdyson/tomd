@@ -1,5 +1,6 @@
 from django.db import models
-from smartypants import smartypants
+from django.utils.safestring import mark_safe
+from smartypants import Attr, smartypants
 from wagtail.models import Page
 from wagtail.fields import StreamField
 from wagtail import blocks
@@ -14,8 +15,10 @@ class RichTextBlock(blocks.RichTextBlock):
     def render(self, value, context=None):
         # Apply smartypants to convert quotes and dashes to smart equivalents
         html = super().render(value, context)
-        clean = html.replace("&#x27;", "'").replace("&quot;", '"')
-        return smartypants(clean)
+        clean = html.replace("&#x27;", "'")
+        # Attr.w converts &quot; in text only, leaving link attributes intact.
+        # The replace above drops the safe flag, so include_block would escape it
+        return mark_safe(smartypants(clean, Attr.default | Attr.w))
 
 
 class BlogPage(Page):

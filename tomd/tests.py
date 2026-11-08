@@ -85,7 +85,7 @@ class PublicSiteTests(SiteTestCase):
     def test_blog_page_renders_every_block_type(self):
         response = self.client.get("/a-post/")
         self.assertContains(response, "A heading")
-        self.assertContains(response, "quoted")
+        self.assertContains(response, "<p>Some &#8220;quoted&#8221; text</p>")
         self.assertContains(response, "<img")
         self.assertContains(response, "test embed")
 
@@ -107,6 +107,13 @@ class PublicSiteTests(SiteTestCase):
 class RichTextBlockTests(SimpleTestCase):
     def test_render_applies_smart_quotes(self):
         html = RichTextBlock().render(RichText('<p>Some "quoted" text</p>'))
+        self.assertIn("&#8220;quoted&#8221;", html)
+
+    def test_render_converts_quote_entities_but_not_in_links(self):
+        html = RichTextBlock().render(
+            RichText('<p><a href="/?q=&quot;x&quot;">&quot;quoted&quot;</a></p>')
+        )
+        self.assertIn('<a href="/?q=&quot;x&quot;">', html)
         self.assertIn("&#8220;quoted&#8221;", html)
 
 
