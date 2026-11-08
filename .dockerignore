@@ -3,3 +3,7 @@
 **/*.env
 production_*.json
 db.sqlite3
+.venv
+tailwindcss
+media
+static

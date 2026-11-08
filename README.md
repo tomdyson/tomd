@@ -47,8 +47,22 @@ cd tomd
 python3.12 -m venv .venv
 source .venv/bin/activate
 
-# Install dependencies
-pip install -r requirements.txt
+# Install dependencies (production packages plus black, flake8 and faker)
+pip install -r requirements-dev.txt
+```
+
+### Dependencies
+
+Direct dependencies are listed in `requirements.in` and development tools in `requirements-dev.in`. `requirements.txt` and `requirements-dev.txt` are lock files generated from them with [uv](https://docs.astral.sh/uv/), so don't edit them by hand. The Docker image installs only `requirements.txt`.
+
+After changing an `.in` file, or to upgrade a package, regenerate both lock files:
+
+```bash
+uv pip compile requirements.in -o requirements.txt --python-version 3.12 --universal --upgrade-package <package>
+```
+
+```bash
+uv pip compile requirements-dev.in -o requirements-dev.txt --python-version 3.12 --universal
 ```
 
 ### Running the Development Server
@@ -74,23 +88,22 @@ Visit http://127.0.0.1:8000/ for the site and http://127.0.0.1:8000/admin/ for t
 The project uses Tailwind CSS with the standalone CLI (no npm required).
 
 ```bash
-# Download Tailwind CLI (macOS ARM64)
-curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
-chmod +x tailwindcss-macos-arm64
-mv tailwindcss-macos-arm64 tailwindcss
-
-# macOS Intel: use tailwindcss-macos-x64
-# Linux: use tailwindcss-linux-x64
-
-# Build CSS (development)
-./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css
-
-# Build CSS (production, minified)
-./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css --minify
-
-# Or use the helper script used in Docker builds
+# Downloads the CLI on first run, then builds minified CSS
 ./build-tailwind.sh
+
+# Build unminified CSS while developing
+./tailwindcss -i ./tomd/tailwind/input.css -o ./tomd/static/css/tailwind.css
 ```
+
+The CLI version is pinned by `TAILWIND_VERSION` in `build-tailwind.sh`. After changing it, delete your local `./tailwindcss` so the script downloads the new one.
+
+### Running the Tests
+
+```bash
+python manage.py test
+```
+
+GitHub Actions runs the system check, a missing-migrations check, `collectstatic` with production settings and the tests on every pull request and on pushes to `master`. Dependabot opens weekly update PRs for Python packages and GitHub Actions.
 
 ## Content Management
 
@@ -148,15 +161,15 @@ Optional:
 
 Deployments are triggered automatically on push to the `master` branch via Coolify's GitHub integration.
 
-The container startup command also runs database migrations and `collectstatic` before starting Gunicorn.
+The container startup command also runs database migrations before starting Gunicorn.
 
 ### Docker Build
 
 The Dockerfile:
-1. Installs Python dependencies
-2. Downloads Tailwind CLI and builds CSS
+1. Starts from `python:3.12-slim` and installs the `requirements.txt` lock file
+2. Downloads the pinned Tailwind CLI and builds CSS
 3. Collects static files
-4. Runs gunicorn via `run.sh`
+4. Runs gunicorn via `run.sh` as the non-root `app` user
 
 ## Development Notes
 

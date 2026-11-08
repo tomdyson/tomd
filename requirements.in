@@ -1,0 +1,12 @@
+# Direct dependencies. requirements.txt is generated from this file, see README.
+Django>=5.2,<5.3
+wagtail>=8.1,<8.2
+wagtail-ai
+wagtailmedia
+dj-database-url
+django-storages[s3]
+psycopg2-binary
+sentry-sdk
+smartypants
+whitenoise
+gunicorn
